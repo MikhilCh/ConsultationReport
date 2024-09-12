@@ -107,7 +107,6 @@
 
 <div class="container">
 
-
     <form action="{% url 'generate_pdf' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
 
@@ -115,84 +114,83 @@
             <div style="flex: 0 0 48%; padding-right: 10px; box-sizing: border-box;">
                 <label for="clinic_name">Clinic Name:</label>
                 <span style="color: rgb(191, 73, 73);">required*</span>
-                <input type="text" id="clinic_name" name="clinic_name" style="width: 100%; box-sizing: border-box;" required>
+                <input type="text" id="clinic_name" name="clinic_name" value="{{ values.clinic_name }}" style="width: 100%; box-sizing: border-box;" required>
             </div>
-        
+
             <div style="flex: 0 0 48%; box-sizing: border-box;">
                 <label for="clinic_logo">Clinic Logo:</label>
                 <span style="color: rgb(191, 73, 73);">required*</span>
-                <input type="file" id="clinic_logo" name="clinic_logo" accept="image/*" style="width: 100%; box-sizing: border-box;" required>
-                <img id="logo_preview" src="#" alt="Clinic Logo Preview" style="display:none;">
+                <input type="file" id="clinic_logo" name="clinic_logo" accept="image/*" style="width: 100%; box-sizing: border-box;">
+                <!-- Logo preview logic -->
+                {% if values.clinic_logo %}
+                    <img id="logo_preview" src="{{ values.clinic_logo.url }}" alt="Clinic Logo Preview" style="display:block;">
+                {% endif %}
             </div>
         </div>
-        
+
         <div class="form-group" style="display: flex; align-items: center;">
             <div style="flex: 0 0 48%; padding-right: 10px; box-sizing: border-box;">
                 <label for="physician_name">Physician Name:</label>
                 <span style="color: rgb(191, 73, 73);">required*</span>
-                <input type="text" id="physician_name" name="physician_name" style="width: 100%; box-sizing: border-box;" required>
+                <input type="text" id="physician_name" name="physician_name" value="{{ values.physician_name }}" style="width: 100%; box-sizing: border-box;" required>
             </div>
-        
+
             <div style="flex: 0 0 48%; box-sizing: border-box;">
                 <label for="physician_contact">Physician Contact:</label>
                 <span style="color: rgb(191, 73, 73);">required*</span>
-                <input type="text" id="physician_contact" name="physician_contact" style="width: 100%; box-sizing: border-box;" required>
+                <input type="text" id="physician_contact" name="physician_contact" value="{{ values.physician_contact }}" style="width: 100%; box-sizing: border-box;" required>
             </div>
         </div>
 
         <div class="form-group" style="display: flex; align-items: center;">
             <div style="flex: 0 0 48%; padding-right: 10px; box-sizing: border-box;">
-                <label for="patient_last_name">Patient First Name:</label>
+                <label for="patient_first_name">Patient First Name:</label>
                 <span style="color: rgb(191, 73, 73);">required*</span>
-                <input type="text" id="patient_first_name" name="patient_first_name" style="width: 100%; box-sizing: border-box;" required>
+                <input type="text" id="patient_first_name" name="patient_first_name" value="{{ values.patient_first_name }}" style="width: 100%; box-sizing: border-box;" required>
             </div>
             <div style="flex: 0 0 48%; box-sizing: border-box;">
                 <label for="patient_last_name">Patient Last Name:</label>
                 <span style="color: rgb(191, 73, 73);">required*</span>
-                <input type="text" id="patient_last_name" name="patient_last_name" style="width: 100%; box-sizing: border-box;" required>
+                <input type="text" id="patient_last_name" name="patient_last_name" value="{{ values.patient_last_name }}" style="width: 100%; box-sizing: border-box;" required>
             </div>
         </div>
 
-
         <div class="form-group" style="display: flex; align-items: center;">
-
             <div style="flex: 0 0 48%; padding-right: 10px; box-sizing: border-box;">
                 <label for="patient_dob">Patient Date of Birth:</label>
                 <span style="color: rgb(191, 73, 73);">required*</span>
-                <input type="date" id="patient_dob" name="patient_dob" style="width: 100%; box-sizing: border-box;" required>
+                <input type="date" id="patient_dob" name="patient_dob" value="{{ values.patient_dob }}" style="width: 100%; box-sizing: border-box;" required>
             </div>
-
             <div style="flex: 0 0 48%; box-sizing: border-box;">
                 <label for="patient_contact">Patient Contact:</label>
                 <span style="color: rgb(191, 73, 73);">required*</span>
-                <input type="text" id="patient_contact" name="patient_contact" style="width: 100%; box-sizing: border-box;" required>
+                <input type="text" id="patient_contact" name="patient_contact" value="{{ values.patient_contact }}" style="width: 100%; box-sizing: border-box;" required>
             </div>
         </div>
 
         <div class="form-group" style="position: relative;">
             <label for="chief_complaint">Chief Complaint:</label>
             <span style="color: rgb(191, 73, 73);">required*</span>
-            <textarea id="chief_complaint" name="chief_complaint" required maxlength="5000" style="width: 100%;"></textarea>
+            <textarea id="chief_complaint" name="chief_complaint" required maxlength="5000" style="width: 100%;">{{ values.chief_complaint }}</textarea>
             <small style="position: absolute; right: 10px; bottom: 10px; font-size: 12px; color: #555;">
                 Max 5000 characters allowed
             </small>
         </div>
-        
+
         <div class="form-group" style="position: relative;">
             <label for="consultation_note">Consultation Note:</label>
             <span style="color: rgb(191, 73, 73);">required*</span>
-            <textarea id="consultation_note" name="consultation_note" required maxlength="5000" style="width: 100%;"></textarea>
+            <textarea id="consultation_note" name="consultation_note" required maxlength="5000" style="width: 100%;">{{ values.consultation_note }}</textarea>
             <small style="position: absolute; right: 10px; bottom: 10px; font-size: 12px; color: #555;">
                 Max 5000 characters allowed
             </small>
         </div>
-        
 
         <button type="submit" class="center-btn">Generate Report</button>
     </form>
 
-     <!-- Modal for displaying errors -->
-     <div id="errorModal" class="modal">
+    <!-- Modal for displaying errors -->
+    <div id="errorModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
             <h3>Form Errors</h3>
@@ -209,28 +207,29 @@
 {% if form.errors %}
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        // Show the modal
-        var modal = document.getElementById("errorModal");
-        if (modal) {
-            modal.style.display = "block";
-        
-            // Close the modal when the user clicks on <span> (x)
-            var span = document.getElementsByClassName("close")[0];
-            if (span) {
-                span.onclick = function() {
-                    modal.style.display = "none";
-                }
-            }
+       
+            var modal = document.getElementById("errorModal");
+            if (modal) {
+                modal.style.display = "block";
 
-            // Close the modal when the user clicks anywhere outside of the modal
-            window.onclick = function(event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
+                var span = document.getElementsByClassName("close")[0];
+                if (span) {
+                    span.onclick = function() {
+                        modal.style.display = "none";
+                    }
+                }
+
+                window.onclick = function(event) {
+                    if (event.target == modal) {
+                        modal.style.display = "none";
+                    }
                 }
             }
-        }
     });
 </script>
+
+
+
 {% endif %}
 </body>
 </html>

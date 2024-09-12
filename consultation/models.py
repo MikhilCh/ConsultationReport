@@ -1,12 +1,16 @@
 from django.core.validators import RegexValidator, MaxLengthValidator
 from django.db import models
-
-
+from datetime import date
+from django.core.exceptions import ValidationError
 # Create your models here.
 phone_validator = RegexValidator(
     regex=r'^\+91\d{10}$|^\d{10}$',
     message='Enter a valid Indian phone number with 10 digits or include country code +91.'
 )
+def validate_date_of_birth(value):
+    today = date.today()
+    if value > today:
+        raise ValidationError('Date of Birth cannot be in the future.')
 
 class Consultation(models.Model):
     clinic_name = models.CharField(max_length=200)
@@ -18,7 +22,7 @@ class Consultation(models.Model):
     )
     patient_first_name = models.CharField(max_length=200)
     patient_last_name = models.CharField(max_length=200)
-    patient_dob = models.DateField()  # Use DateField for date of birth
+    patient_dob = models.DateField(validators=[validate_date_of_birth])  # Use DateField for date of birth
     patient_contact = models.CharField(
         max_length=13,  # Allow for optional country code
         validators=[phone_validator]  # Apply phone number validation

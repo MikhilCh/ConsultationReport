@@ -126,6 +126,6 @@ def generate_pdf_view(request):
             
             return response
         else:
-            return render(request, 'consultation.html', {'form': form})
+            return render(request, 'consultation.html', {'form': form, 'values': request.POST})
 
     return render(request, 'consultation.html')
