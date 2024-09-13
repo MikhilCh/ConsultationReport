@@ -113,13 +113,13 @@
         <div class="form-group" style="display: flex; align-items: center;">
             <div style="flex: 0 0 48%; padding-right: 10px; box-sizing: border-box;">
                 <label for="clinic_name">Clinic Name:</label>
-                <span style="color: rgb(191, 73, 73);">required*</span>
+                <span style="color: red;">*</span>
                 <input type="text" id="clinic_name" name="clinic_name" value="{{ values.clinic_name }}" style="width: 100%; box-sizing: border-box;" required>
             </div>
 
             <div style="flex: 0 0 48%; box-sizing: border-box;">
                 <label for="clinic_logo">Clinic Logo:</label>
-                <span style="color: rgb(191, 73, 73);">required*</span>
+                <span style="color: red;">*</span>
                 <input type="file" id="clinic_logo" name="clinic_logo" accept="image/*" style="width: 100%; box-sizing: border-box;">
                 <!-- Logo preview logic -->
                 {% if values.clinic_logo %}
@@ -131,13 +131,13 @@
         <div class="form-group" style="display: flex; align-items: center;">
             <div style="flex: 0 0 48%; padding-right: 10px; box-sizing: border-box;">
                 <label for="physician_name">Physician Name:</label>
-                <span style="color: rgb(191, 73, 73);">required*</span>
+                <span style="color: red;">*</span>
                 <input type="text" id="physician_name" name="physician_name" value="{{ values.physician_name }}" style="width: 100%; box-sizing: border-box;" required>
             </div>
 
             <div style="flex: 0 0 48%; box-sizing: border-box;">
                 <label for="physician_contact">Physician Contact:</label>
-                <span style="color: rgb(191, 73, 73);">required*</span>
+                <span style="color: red;">*</span>
                 <input type="text" id="physician_contact" name="physician_contact" value="{{ values.physician_contact }}" style="width: 100%; box-sizing: border-box;" required>
             </div>
         </div>
@@ -145,12 +145,12 @@
         <div class="form-group" style="display: flex; align-items: center;">
             <div style="flex: 0 0 48%; padding-right: 10px; box-sizing: border-box;">
                 <label for="patient_first_name">Patient First Name:</label>
-                <span style="color: rgb(191, 73, 73);">required*</span>
+                <span style="color: red;">*</span>
                 <input type="text" id="patient_first_name" name="patient_first_name" value="{{ values.patient_first_name }}" style="width: 100%; box-sizing: border-box;" required>
             </div>
             <div style="flex: 0 0 48%; box-sizing: border-box;">
                 <label for="patient_last_name">Patient Last Name:</label>
-                <span style="color: rgb(191, 73, 73);">required*</span>
+                <span style="color: red;">*</span>
                 <input type="text" id="patient_last_name" name="patient_last_name" value="{{ values.patient_last_name }}" style="width: 100%; box-sizing: border-box;" required>
             </div>
         </div>
@@ -158,19 +158,19 @@
         <div class="form-group" style="display: flex; align-items: center;">
             <div style="flex: 0 0 48%; padding-right: 10px; box-sizing: border-box;">
                 <label for="patient_dob">Patient Date of Birth:</label>
-                <span style="color: rgb(191, 73, 73);">required*</span>
+                <span style="color: red;">*</span>
                 <input type="date" id="patient_dob" name="patient_dob" value="{{ values.patient_dob }}" style="width: 100%; box-sizing: border-box;" required>
             </div>
             <div style="flex: 0 0 48%; box-sizing: border-box;">
                 <label for="patient_contact">Patient Contact:</label>
-                <span style="color: rgb(191, 73, 73);">required*</span>
+                <span style="color: red;">*</span>
                 <input type="text" id="patient_contact" name="patient_contact" value="{{ values.patient_contact }}" style="width: 100%; box-sizing: border-box;" required>
             </div>
         </div>
 
         <div class="form-group" style="position: relative;">
             <label for="chief_complaint">Chief Complaint:</label>
-            <span style="color: rgb(191, 73, 73);">required*</span>
+            <span style="color: red;">*</span>
             <textarea id="chief_complaint" name="chief_complaint" required maxlength="5000" style="width: 100%;">{{ values.chief_complaint }}</textarea>
             <small style="position: absolute; right: 10px; bottom: 10px; font-size: 12px; color: #555;">
                 Max 5000 characters allowed
@@ -179,7 +179,7 @@
 
         <div class="form-group" style="position: relative;">
             <label for="consultation_note">Consultation Note:</label>
-            <span style="color: rgb(191, 73, 73);">required*</span>
+            <span style="color: red;">*</span>
             <textarea id="consultation_note" name="consultation_note" required maxlength="5000" style="width: 100%;">{{ values.consultation_note }}</textarea>
             <small style="position: absolute; right: 10px; bottom: 10px; font-size: 12px; color: #555;">
                 Max 5000 characters allowed
